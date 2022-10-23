@@ -14,7 +14,13 @@ def get_random_matrix(num_rows, num_columns):
 	return a
 
 def get_file_dimensions(file_name):
-	return (0,0)
+	
+	try:
+		df = pd.read_csv(file_name, header=None)
+	except FileNotFoundError:
+		print('File '+str(file_name)+' not found')
+
+	return np.shape(df)
 
 def write_matrix_to_file(num_rows, num_columns, file_name):
 	return None
