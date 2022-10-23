@@ -3,8 +3,11 @@ import pandas as pd
 
 def get_random_matrix(num_rows, num_columns):
 
-	a = np.random.rand(num_rows, num_columns)
-	
+	try:
+		a = np.random.rand(num_rows, num_columns)
+	except (ValueError, TypeError):
+		print('num_rows and num_cols must be postive integars (or zero)')
+
 	return a
 
 def get_file_dimensions(file_name):
