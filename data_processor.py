@@ -14,11 +14,11 @@ def get_random_matrix(num_rows, num_columns):
 	return a
 
 def get_file_dimensions(file_name):
-	
+
 	try:
 		df = pd.read_csv(file_name, header=None)
 	except FileNotFoundError:
-		print('File '+str(file_name)+' not found')
+		raise FileNotFoundError('File '+str(file_name)+' not found')
 
 	return np.shape(df)
 
