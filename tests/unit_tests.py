@@ -34,5 +34,23 @@ class TestUtils(unittest.TestCase):
         # negative test: does not return data of incorrect shape
         cls.assertNotEqual(np.shape(data_processor.get_random_matrix(2, 3)), (3, 2))
 
+        # check that correct errors are raised
+        cls.assertRaises(TypeError, data_processor.get_random_matrix, 'three', 3)
+        cls.assertRaises(ValueError, data_processor.get_random_matrix, -2, 3)
+
+    def test_get_file_dimensions(cls):
+
+        """Test that get_file_dimensions functions correctly
+        """
+        
+        # positive test: returns correct shape
+        cls.assertEqual(data_processor.get_file_dimensions(cls.testfile_5_6), (5, 6))
+
+        # negative test: does not return data of incorrect shape
+        cls.assertEqual(data_processor.get_file_dimensions(cls.testfile_5_6), (6, 5))
+
+        # check that correct errors are raised
+        cls.assertRaises(FileNotFoundError, data_processor.get_file_dimensions, 'csvDNE.csv')
+
 if __name__ == '__main__':
     unittest.main()
