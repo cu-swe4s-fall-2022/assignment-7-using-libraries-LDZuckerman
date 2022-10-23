@@ -5,8 +5,11 @@ def get_random_matrix(num_rows, num_columns):
 
 	try:
 		a = np.random.rand(num_rows, num_columns)
-	except (ValueError, TypeError):
-		print('num_rows and num_cols must be postive integars (or zero)')
+	except TypeError:
+		raise TypeError('num_rows and num_columns must be ints or floats')
+	except ValueError:
+		raise ValueError('num_rows and num_columns must be positive int or'
+					    +' float values')
 
 	return a
 
