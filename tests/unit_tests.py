@@ -47,10 +47,27 @@ class TestUtils(unittest.TestCase):
         cls.assertEqual(data_processor.get_file_dimensions(cls.testfile_5_6), (5, 6))
 
         # negative test: does not return data of incorrect shape
-        cls.assertEqual(data_processor.get_file_dimensions(cls.testfile_5_6), (6, 5))
+        cls.assertNotEqual(data_processor.get_file_dimensions(cls.testfile_5_6), (6, 5))
 
         # check that correct errors are raised
         cls.assertRaises(FileNotFoundError, data_processor.get_file_dimensions, 'csvDNE.csv')
+
+    def test_write_matrix_to_file(cls):
+
+        """Test that get_file_dimensions functions correctly
+        """
+        
+        # positive test: test that matrix created has the correct dimensions 
+        data_processor.write_matrix_to_file(2,3, 'testfile.csv')
+        cls.assertEqual(data_processor.get_file_dimensions('testfile.csv'), (2,3))
+
+        # negative test: 
+        cls.assertNotEqual(data_processor.get_file_dimensions('testfile.csv'), (3,2))
+
+        # check that correct errors are raised
+        cls.assertRaises(TypeError, data_processor.write_matrix_to_file, 'three', 3, 'file.csv')
+        cls.assertRaises(ValueError, data_processor.write_matrix_to_file, -2, 3, 'file.csv')
+        cls.assertRaises(NameError, data_processor.write_matrix_to_file, -2, 3, file.csv)
 
 if __name__ == '__main__':
     unittest.main()
