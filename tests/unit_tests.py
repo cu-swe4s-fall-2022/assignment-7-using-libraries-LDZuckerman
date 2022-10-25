@@ -54,7 +54,7 @@ class TestUtils(unittest.TestCase):
 
     def test_write_matrix_to_file(cls):
 
-        """Test that get_file_dimensions functions correctly
+        """Test that write_file_to_text functions correctly
         """
         
         # positive test: test that matrix created has the correct dimensions 
@@ -67,7 +67,7 @@ class TestUtils(unittest.TestCase):
         # check that correct errors are raised
         cls.assertRaises(TypeError, data_processor.write_matrix_to_file, 'three', 3, 'file.csv')
         cls.assertRaises(ValueError, data_processor.write_matrix_to_file, -2, 3, 'file.csv')
-        cls.assertRaises(NameError, data_processor.write_matrix_to_file, -2, 3, file.csv)
+        cls.assertRaises(NameError, data_processor.write_matrix_to_file, 2, 3, 2)
 
 if __name__ == '__main__':
     unittest.main()
