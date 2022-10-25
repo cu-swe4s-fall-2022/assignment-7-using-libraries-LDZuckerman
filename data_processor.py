@@ -9,7 +9,7 @@ def get_random_matrix(num_rows, num_columns):
 		raise TypeError('num_rows and num_columns must be ints or floats')
 	except ValueError:
 		raise ValueError('num_rows and num_columns must be positive int or'
-					    +' float values')
+					     + ' float values')
 
 	return a
 
@@ -23,4 +23,12 @@ def get_file_dimensions(file_name):
 	return np.shape(df)
 
 def write_matrix_to_file(num_rows, num_columns, file_name):
+
+	if type(file_name) != str:
+		raise NameError('file_name must be a string')
+
+	a = get_random_matrix(num_rows, num_columns)
+
+	np.savetxt(file_name, a, delimiter=",")
+
 	return None
