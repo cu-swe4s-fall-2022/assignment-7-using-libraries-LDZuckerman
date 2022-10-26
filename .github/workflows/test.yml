@@ -1,0 +1,52 @@
+name: Tests
+
+# tell it when to run the jobs
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# define the jobs to run
+jobs:
+
+  functional_test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activeate-environment: environment
+          environment-file: environment.yml
+      - run: bash tests/functional_tests.sh
+
+  code_style:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activeate-environment: environment
+          environment-file: environment.yml
+      - run: pycodestyle $(git ls-files "*.py")
+
+  unit_tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activeate-environment: environment
+          environment-file: environment.yml
+      - run: |
+            cd tests
+            python -m unittest test_utils
