@@ -28,7 +28,7 @@ def get_random_matrix(num_rows, num_columns):
 
 	return a
 
-def get_file_dimensions(file_name):
+def get_file_dimensions(file_name, has_header):
 
 	"""" Find the dimensions of the array contained in a CSV file
 
@@ -36,12 +36,20 @@ def get_file_dimensions(file_name):
     -----------
     file_name: string
 		The name of the file containing the array
+	has_header: True of False
+		Whether the first line of the file should be treated as a header
 
     Returns:
     -------
     shape
         The shape of the array contained in the file
 	"""
+	if has_header == True:
+		header = 0
+	elif has_header == False:
+		header = None
+	else:
+		raise ValueError('has_header must be True or False')
 
 	try:
 		df = pd.read_csv(file_name, header=None)
