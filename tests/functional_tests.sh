@@ -3,8 +3,7 @@ test -e ssshtest || wget -q https://raw.githubusercontent.com/ryanlayer/ssshtest
 . ssshtest
 
 # test plotter.py
-wget -O 
-wget 
+wget "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
 run test_plotter.py python plotter.py
 
 filepath='iris_boxplot.png'
