@@ -2,7 +2,7 @@ import unittest
 import random
 import numpy as np
 import sys
-#sys.path.append('../')
+# sys.path.append('../')
 import data_processor  # nopep8
 
 
@@ -13,7 +13,7 @@ class TestUtils(unittest.TestCase):
 
         """Create toy data for tests
         """
-        array56 = a = np.empty((5,6))
+        array56 = a = np.empty((5, 6))
         np.savetxt("test56.csv", array56, delimiter=",")
         cls.f56 = 'test56.csv'
 
@@ -50,14 +50,14 @@ class TestUtils(unittest.TestCase):
 
         """Test that get_file_dimensions functions correctly
         """
-        
+
         # positive test: returns correct shape
         cls.assertEqual(data_processor.get_file_dimensions(cls.f56, False),
                         (5, 6))
 
         # negative test: does not return data of incorrect shape
         cls.assertNotEqual(data_processor.get_file_dimensions(cls.f56, False),
-                          (6, 5))
+                           (6, 5))
 
         # check that correct errors are raised
         cls.assertRaises(ValueError,
@@ -73,15 +73,15 @@ class TestUtils(unittest.TestCase):
 
         """Test that write_file_to_text functions correctly
         """
-        
-        # positive test: test that matrix created has the correct dimensions 
-        data_processor.write_matrix_to_file(2,3, 'testfile.csv')
+
+        # positive test: test that matrix created has the correct dimensions
+        data_processor.write_matrix_to_file(2, 3, 'testfile.csv')
         true_dim = data_processor.get_file_dimensions('testfile.csv',
                                                       has_header=False)
-        cls.assertEqual(true_dim, (2,3))
+        cls.assertEqual(true_dim, (2, 3))
 
-        # negative test: 
-        cls.assertNotEqual(true_dim, (3,2))
+        # negative test:
+        cls.assertNotEqual(true_dim, (3, 2))
 
         # check that correct errors are raised
         cls.assertRaises(TypeError,
@@ -99,6 +99,7 @@ class TestUtils(unittest.TestCase):
                          2,
                          3,
                          2)
+
 
 if __name__ == '__main__':
     unittest.main()
