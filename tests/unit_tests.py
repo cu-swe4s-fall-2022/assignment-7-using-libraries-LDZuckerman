@@ -2,8 +2,7 @@ import unittest
 import random
 import numpy as np
 import sys
-# sys.path.append('../')
-import data_processor  # nopep8
+import data_processor
 
 
 class TestUtils(unittest.TestCase):
