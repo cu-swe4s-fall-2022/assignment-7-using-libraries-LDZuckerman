@@ -47,4 +47,4 @@ jobs:
         with:
           activeate-environment: environment
           environment-file: environment.yml
-      - run: python -m unittest tests/unit_tests
+      - run: python -m unittest tests/unit_tests.py
