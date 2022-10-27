@@ -49,11 +49,11 @@ def main():
     plt.figure()
     for species in set(iris['species']):
         subset = iris[iris['species'] == species]
-        plt.scatter(subset['sepal_width'],
-                    subset['sepal_length'],
+        plt.scatter(subset['petal_width'],
+                    subset['petal_length'],
                     label=species)
-    plt.xlabel('sepal width (cm)')
-    plt.ylabel('sepal length (cm)')
+    plt.xlabel('petal width (cm)')
+    plt.ylabel('petal length (cm)')
     plt.legend()
     plt.savefig(scatterplot_filename)
 
